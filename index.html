@@ -1,0 +1,249 @@
+<html>
+<head>
+  <title>FAF Working Prototype - Not Efficient</title>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+  <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript" src="js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+
+  <script type="text/javascript" src="js/controller.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+
+  <!-- HTML META used to zoom appropriately on smaller devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body ng-app="app" ng-controller="table_controller">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          Awesome Stock Market Analyzer
+          <!-- <img alt="Brand" src="..."> -->
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+  <!-- <div class="container-fluid"> -->
+
+
+
+
+    <div class="row row-content">
+      <div class="col-xs-12">
+
+
+      <form class="form-horizontal" role="search" ng-submit="submit()">
+        <div class="col-xs-10">
+
+
+        <!-- <div class="form-group"> -->
+          <!-- <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue" class="form-control"/>
+          -->
+          <input type="text" ng-model="selected" typeahead="state for state in tickr_names | filter:$viewValue | limitTo:8" placeholder="Start typing here to get started ..." class="form-control">
+
+        <!-- </div> -->
+        </div>
+        <div class="col-xs-2">
+          <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+      </form>
+      </div>
+
+    </div>
+    <br>
+    <!--  -->
+    <div class="row row-content">
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <accordion close-others="oneAtATime">
+
+              <accordion-group heading="Price Ratios" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+
+                  <div ng-repeat="h in header">
+                    <label ng-if="h.subtitle != '' && h.title=='Price Ratios' ">
+                      <input type="checkbox" ng-model="h.checked"> {{h.subtitle}}
+                      </input>
+                    </label>
+
+                  </div>
+
+              </accordion-group>
+
+              <accordion-group heading="Statistics" is-open="status.isSecondOpen" is-disabled="status.isFirstDisabled">
+
+                  <div ng-repeat="h in header">
+                    <label ng-if="h.subtitle != '' && h.title=='Statistics' ">
+                      <input type="checkbox" ng-model="h.checked"> {{h.subtitle}}
+                      </input>
+                    </label>
+                  </div>
+
+              </accordion-group>
+
+
+
+          </accordion>
+
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="table-responsive bodycontainer">
+
+        <form class="simple-form">
+
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr class="center">
+
+                      <th>Remove</th>
+
+                      <th ng-repeat="h in header_main">
+                        <div ng-if="h.flag == 1">{{h.title}}
+                        </div>
+                      </th>
+
+                      <th ng-repeat="h in characteristics_child" colspan="{{characteristics_child.length}}" ng-if="!($index%characteristics_child.length)">
+                      <!-- <th ng-repeat="h in characteristics_child" colspan="{{characteristics_child.length}}"> -->
+                        <!-- <div>{{h.title}}
+                        </div> -->
+                        {{h.title}}
+                      </th>
+
+                      <th ng-repeat="h in title2_child" colspan="{{title2_child.length}}" ng-if="!($index%13)">
+                      <!-- <th ng-repeat="h in characteristics_child" colspan="{{characteristics_child.length}}"> -->
+                        {{h.title}}
+                      </th>
+            </tr>
+            <tr>
+                 <!-- <div ng-repeat="h in header">
+                        <div ng-if="h.checked">
+                          <th>
+                            {{h.subtitle}}
+                          </th>
+                        </div>
+                      </div> -->
+                      <th>
+                        <!-- <div class="btn-group">
+                          <input class="btn btn-default" type="button" ng-click="deleteRow(result)" value="Remove" />
+                        </div>   -->
+                      </th>
+
+                      <th></th><th></th><th></th><th></th><th></th>
+                      <th ng-repeat="h in characteristics_child"><div ng-if="h.checked">{{h.subtitle}}</div></th>
+                      <th ng-repeat="h in title2_child"><div ng-if="h.checked">{{h.subtitle}}</div></th>
+            </tr>
+          </thead>
+
+       <!--  </table>
+        <div class="bodycontainer scrollable">
+        <table class="table table-striped">
+        -->
+
+          <tbody class="center" id="myTable">
+            <tr ng-repeat="d in result | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+
+                  <td>
+                    <div class="btn-group  btn-group-xs">
+                          <input class="btn btn-default" type="button" ng-click="deleteRow($index)" value="Remove" />
+                    </div>
+                  </td>
+
+                  <td ng-repeat="h in header_main">
+                    <div ng-if="!h.subtitle">
+                      <div ng-if="h.title == 'Last Trade Price' || h.title == 'Change' || h.title == 'Percent Change'" ng-style="set_color(d.Change)">{{d[h.title]}}</div>
+                      <div ng-if="h.title != 'Last Trade Price' && h.title != 'Change' && h.title != 'Percent Change'">{{d[h.title]}}</div>
+                    </div>
+                    <div ng-if="h.subtitle && h.checked">
+                      {{d[h.subtitle]}}
+                    </div>
+                  </td>
+
+                  <td ng-repeat="h in characteristics_child">
+                    <div ng-if="!h.subtitle">
+                      {{d[h.title]}}
+                    </div>
+                    <div ng-if="h.subtitle && h.checked">
+                      {{d[h.subtitle]}}
+                    </div>
+                  </td>
+
+                  <td ng-repeat="h in title2_child">
+                    <div ng-if="!h.subtitle">
+                      {{d[h.title]}}
+                    </div>
+                    <div ng-if="h.subtitle && h.checked">
+                      {{d[h.subtitle]}}
+                    </div>
+                  </td>
+            </tr>
+          </tbody>
+
+          <!-- tfoot starts-->
+          <!-- <tfoot>
+            <td colspan="3">
+              <div class="pagination">
+                <ul>
+                  <li ng-class="prevPageDisabled()">
+                    <a href ng-click="prevPage()">Prev</a>
+                  </li>
+
+                  <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                    <a href="#">{{n+1}}</a>
+                  </li>
+
+                  <li ng-class="nextPageDisabled()">
+                    <a href ng-click="nextPage()">Next</a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tfoot>
+           --><!-- tfoot ends-->
+
+
+        </table>
+       <!--  </div>     -->
+        </form>
+
+      </div>
+
+        <div>
+          <nav>
+              <ul class="pager">
+                <li><a href ng-click="prevPage()">Previous</a></li>
+                <li><a href ng-click="nextPage()">Next</a></li>
+              </ul>
+          </nav>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  <!-- </div> -->
+
+  </div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js">
+</script>
+</body>
+
+</html>

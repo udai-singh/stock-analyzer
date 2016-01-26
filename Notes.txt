@@ -1,0 +1,28 @@
+
+checkbox to delete row .. >> on hold
+highlight the row to red when the remove button is selected.. ??? on hold 
+
+********** Future Tasks ***********
+
+do not allow duplicate rows -
+add bootstrap alert -
+add search bar to the nav 
+improve nav / add login/register page
+dynamically add the edit column on button click
+enable/disable pagination buttons
+Chart work 
+
+*********** LOG ************ 
+sept 27
+button to delete row -- done
+reversing results -- done
+
+oct 4
+add red/green to stock info -- done
+add two new colums -- done
+added a couple of more tickers 
+
+tried to get alert working for duplicate rows .. tried 2 3 different things that did not work
+
+next step => try and implement the submit as a regular submit method .. might work!
+

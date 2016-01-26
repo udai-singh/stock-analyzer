@@ -1,0 +1,41 @@
+.lightBG{
+	background: #999;
+}
+
+
+table {
+	width: 100%;	
+	
+}
+
+/*
+tbody {
+	max-height: 300px; 
+	overflow-y: scroll;
+	
+}*/
+
+div.bodycontainer {
+	max-height: 300px; 
+	
+}
+
+div.bodycontainer tbody { 
+	border:solid;
+	margin: 0; 
+	overflow: auto;
+
+}
+
+.center th, td {
+	text-align: center;
+
+}
+
+
+
+th, td { 
+	white-space: nowrap; 
+/*	border: solid; */
+	
+}

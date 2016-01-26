@@ -1,0 +1,31 @@
+.lightBG{
+	background: #999;
+}
+
+
+table {
+	width: 100%;	
+	
+}
+
+tbody {
+	overflow-y: scroll; 
+	/*height: 500px;*/
+	
+}
+
+
+.table-responsive {
+	overflow: scroll;
+}
+
+th, td { 
+	white-space: nowrap; 
+/*	border: solid; */
+	
+}
+
+div.dataTables_wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }

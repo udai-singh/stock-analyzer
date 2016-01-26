@@ -1,0 +1,44 @@
+[{
+	"tickr_name":"Facebook, FB",
+	"tickr_id":"FB"
+},{
+	"tickr_name":"Google, GOOG",
+	"tickr_id":"GOOG"
+},{
+	"tickr_name":"Bank of America, BAC",
+	"tickr_id":"BAC"
+},{
+	"tickr_name":"Apple Inc, AAPL",
+	"tickr_id":"AAPL"
+},{
+	"tickr_name":"Microsoft Corporation, MSFT",
+	"tickr_id":"MSFT"
+},{
+	"tickr_name":"Yahoo! Inc, YHOO",
+	"tickr_id":"YHOO"
+},{
+	"tickr_name":"LinkedIn Corp, LNKD",
+	"tickr_id":"LNKD"
+},{
+	"tickr_name":"eBay Inc, EBAY",
+	"tickr_id":"EBAY"
+},{
+	"tickr_name":"Twitter Inc, TWTR",
+	"tickr_id":"TWTR"
+},{
+	"tickr_name":"Amazon.com, Inc., AMZN",
+	"tickr_id":"AMZN"
+},{
+	"tickr_name":"Citigroup Inc, C",
+	"tickr_id":"C"
+},{
+	"tickr_name":"TCF Financial Corporation, TCB",
+	"tickr_id":"TCB"
+},{
+	"tickr_name":"J P Morgan Chase and Co, JPM",
+	"tickr_id":"JPM"
+},{
+	"tickr_name":"Ford Motor Company, F",
+	"tickr_id":"F"
+}
+]
