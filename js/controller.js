@@ -146,6 +146,9 @@ $scope.submit = function() {
                     data.query.results.quote.PriceSales, //8
                     data.query.results.quote.PriceBook, //9
                     data.query.results.quote.DividendYield, //10
+                    data.query.results.quote.DaysRange, //11
+                    data.query.results.quote.PriceEPSEstimateCurrentYear, //12
+                    data.query.results.quote.FiftydayMovingAverage, //13
                 ];
 
 
@@ -174,7 +177,10 @@ $scope.submit = function() {
                                  "PEG Ratio": per[7],
                                  "Price Sales": per[8],
                                  "Price Book": per[9],
-                                 "Dividend Yield": per[10]
+                                 "Dividend Yield": per[10],
+                                 "Days Range": per[11],
+                                 "Price Estimate Current Year": per[12],
+                                 "50 Day Moving Average": per[13]
                                 });
                 per = '';
 
